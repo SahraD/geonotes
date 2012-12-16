@@ -36,77 +36,20 @@ GeonotesYeoman.Views.MapView = Backbone.View.extend({
 
         var map = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
 
-        var positions = new Array();
 
-        positions.push(latlng);
+        window.allParcours.each(function(parcours){
 
-        window.parcours.each(function(note){
+            //On prend en compte la localisation actuelle
+            var notes = parcours.get("notes");
+            var location = new GeonotesYeoman.Models.NoteModel();
+            location.set("coords", latlng);
+            notes.add(location);
 
-            window.map.create_marker(note, map);
+            parcours.set("notes", notes);
 
-            positions.push(note.get("coords"));
+            parcours.generate_directions(map);
 
         });
-
-
-
-        window.map.generate_directions(positions, map);
-    },
-
-    create_marker: function(note, map) {
-
-        //Trouver la note qui correspond à la position
-        //Associer texte de la note
-        var title = '<h2 class="firstHeading">'+note.get("titre")+'</h2>';
-        var content = '<p>'+note.get("description")+'</p>';
-
-        var contentDiv = '<div>' + title + content + '</div>';
-
-        var infowindow = new google.maps.InfoWindow({
-            content: contentDiv
-        });
-
-        var marker = new google.maps.Marker({
-            position: note.get("coords"),
-            map: map,
-            title: note.get("titre")
-        });
-
-        google.maps.event.addListener(marker, 'click', function() {
-            infowindow.open(map,marker);
-        });
-
-    },
-
-
-    generate_directions: function(positions, map){
-
-        var directionsDisplay = new google.maps.DirectionsRenderer();
-        directionsDisplay.setMap(map);
-        var directionsService = new google.maps.DirectionsService();
-
-        var waypoints = [];
-
-        for(var i=1; i<positions.length; i++){
-            waypoints.push({
-                location: positions[i],
-                stopover: false
-            });
-        }
-
-        var request = {
-            origin : positions[0],
-            destination: positions[0],
-            waypoints: waypoints,
-            travelMode: google.maps.TravelMode.WALKING
-        };
-
-        directionsService.route(request, function(result, status) {
-            if (status == google.maps.DirectionsStatus.OK) {
-                directionsDisplay.setDirections(result);
-            }
-        });
-
     }
 
 });
