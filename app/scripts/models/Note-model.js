@@ -3,7 +3,7 @@ GeonotesYeoman.Models.NoteModel = Backbone.Model.extend({
     defaults: {
         titre: "Nouvelle note",
         coords: new google.maps.LatLng(0, 0),
-        commentaire: "Commentaires sur la note",
+        description: "Commentaires sur la note",
         dateCreation: new Date(),
         categorie: "Catégorie"
     },
@@ -14,7 +14,7 @@ GeonotesYeoman.Models.NoteModel = Backbone.Model.extend({
 
     create_marker: function(map) {
 
-        var title = '<h2 class="firstHeading">'+this.get("titre")+'</h2>';
+        var title = '<h4 class="firstHeading">'+this.get("titre")+'</h4>';
         var content = '<p>'+this.get("description")+'</p>';
 
         var contentDiv = '<div>' + title + content + '</div>';

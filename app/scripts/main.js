@@ -20,14 +20,14 @@ window.GeonotesYeoman = {
       note2.set("description", "Ceci est ma deuxième note");
 
       var note3 = new GeonotesYeoman.Models.NoteModel();
-      note1.set("titre", "Troisième note");
-      note1.set("coords", new google.maps.LatLng(45.441954,4.386354));
-      note1.set("description", "Et si on faisait un autre parcours");
+      note3.set("titre", "Troisième note");
+      note3.set("coords", new google.maps.LatLng(45.441954,4.386354));
+      note3.set("description", "Et si on faisait un autre parcours");
 
       var note4 = new GeonotesYeoman.Models.NoteModel();
-      note1.set("titre", "Quatrième note");
-      note1.set("coords", new google.maps.LatLng(45.442805,4.399068));
-      note1.set("description", "Et si on faisait un autre parcours avec ce point");
+      note4.set("titre", "Quatrième note");
+      note4.set("coords", new google.maps.LatLng(45.442805,4.399068));
+      note4.set("description", "Et si on faisait un autre parcours avec ce point");
 
       var notes1 = new GeonotesYeoman.Collections.NotesCollection();
       notes1.add(note1);
@@ -40,6 +40,9 @@ window.GeonotesYeoman = {
       var parcours1 = new GeonotesYeoman.Models.ParcoursModel();
       parcours1.set("nom", "1er Parcours");
       parcours1.set("notes", notes1);
+
+      console.log("Parcours 1");
+      console.log(parcours1);
 
       var parcours2 = new GeonotesYeoman.Models.ParcoursModel();
       parcours2.set("nom", "2ème Parcours");

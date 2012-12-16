@@ -32,9 +32,9 @@
 
         <div class="span3">
             <script type="text/template" id="parcours_template">
-                {{#note}}
-                <li><a id="parcours-{{titre}}">{{titre}}</a></li>
-                {{/note}}
+                {{#parcours}}
+                <li><a id="{{nom}}" class="parcours">{{nom}}</a></li>
+                {{/parcours}}
             </script>
             <ul class="nav nav-tabs nav-stacked" style="margin-left:15px; margin-top: 5px;" id="parcours-ul">
             </ul>

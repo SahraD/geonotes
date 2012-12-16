@@ -2,6 +2,10 @@ GeonotesYeoman.Views.MapView = Backbone.View.extend({
 
     el: $("#map_canvas"),
 
+    theMap: null,
+
+    maPosition: null,
+
     initialize: function(){
 
         this.initiate_geolocation();
@@ -9,17 +13,17 @@ GeonotesYeoman.Views.MapView = Backbone.View.extend({
     },
 
     initiate_geolocation: function() {
+
         this.watchId = navigator.geolocation.watchPosition(this.handle_geolocation_query);
     },
 
     handle_geolocation_query: function(position){
 
         window.map.init_map(position);
-
-
     },
 
     init_map: function(position) {
+
         var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
         var myOptions = {
@@ -34,22 +38,37 @@ GeonotesYeoman.Views.MapView = Backbone.View.extend({
             streetViewControl: false
         };
 
-        var map = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
+        theMap = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
 
+        maPosition = new GeonotesYeoman.Models.NoteModel();
+        maPosition.set("titre", "Position actuelle");
+        maPosition.set("description", "");
+        maPosition.set("coords", latlng);
+
+        maPosition.create_marker(theMap);
+
+        window.map.show_all_notes();
+
+
+    },
+
+    show_parcours: function(parcours){
+
+        parcours.generate_directions(theMap);
+    },
+
+    show_all_notes: function(){
 
         window.allParcours.each(function(parcours){
 
-            //On prend en compte la localisation actuelle
             var notes = parcours.get("notes");
-            var location = new GeonotesYeoman.Models.NoteModel();
-            location.set("coords", latlng);
-            notes.add(location);
 
-            parcours.set("notes", notes);
-
-            parcours.generate_directions(map);
+            notes.each(function(note){
+                note.create_marker(theMap);
+            });
 
         });
+
     }
 
 });
