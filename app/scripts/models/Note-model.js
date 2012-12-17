@@ -8,10 +8,6 @@ GeonotesYeoman.Models.NoteModel = Backbone.Model.extend({
         categorie: "Catégorie"
     },
 
-    initialize: function(){
-        console.log("New Note");
-    },
-
     create_marker: function(map) {
 
         var title = '<h4 class="firstHeading">'+this.get("titre")+'</h4>';

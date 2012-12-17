@@ -2,7 +2,8 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" xmlns="http://www.w3.org/1999/html"> <!--<![endif]-->
     <head>
 
         <meta charset="utf-8"/>
@@ -62,6 +63,43 @@
         </div>
     </div>
 
+    <div id="addForm" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">Ajout d'une note</h3>
+        </div>
+        <div class="modal-body">
+            <form class="form-horizontal">
+                <div class="control-group">
+                    <label class="control-label" for="titre">Titre</label>
+                    <div class="controls">
+                        <input type="text" id="titre" placeholder="Titre">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="commentaires">Commentaires</label>
+                    <div class="controls">
+                        <textarea id="commentaires"></textarea>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="categories">Catégories</label>
+                    <div class="controls">
+                        <select id="categories">
+                            <option value="ville">Ville</option>
+                            <option value="campagne">Campagne</option>
+                            <option value="montagne">Montagne</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Fermer</button>
+            <button id="saveNewNote" class="btn btn-primary">Sauver</button>
+        </div>
+    </div>
+
 
     <!--[if lt IE 7]>
         <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
@@ -70,6 +108,11 @@
     <!-- Add your site or application content here -->
 
     <!-- build:js scripts/scripts.js -->
+    <script type="text/javascript">
+        window.appli = "admin";
+    </script>
+
+
     <script src="components/mustache/mustache.js"></script>
     <script src="scripts/vendor/jquery.min.js"></script>
     <script src="scripts/vendor/lodash.min.js"></script>
@@ -85,8 +128,9 @@
     <script src="scripts/collections/Notes-collection.js"></script>
     <script src="scripts/collections/ParcoursAll-collection.js"></script>
     <script src="scripts/routes/application-router.js"></script>
-    <!-- endbuild -->
 
+    <script src="../components/bootstrap/js/bootstrap-modal.js"></script>
+    <!-- endbuild -->
 
     </body>
 </html>

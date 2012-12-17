@@ -6,6 +6,10 @@ GeonotesYeoman.Views.MapView = Backbone.View.extend({
 
     maPosition: null,
 
+    events: {
+        "dblclick" : "show_modal",
+    },
+
     initialize: function(){
 
         this.initiate_geolocation();
@@ -69,6 +73,12 @@ GeonotesYeoman.Views.MapView = Backbone.View.extend({
 
         });
 
+    },
+
+    show_modal: function(){
+        if(window.appli == "admin"){
+            $("#addForm").modal({show: true});
+        }
     }
 
 });
