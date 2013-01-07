@@ -1,4 +1,4 @@
-GeonotesYeoman.Models.NoteModel = Backbone.Model.extend({
+Geonotes.Models.NoteModel = Backbone.Model.extend({
 
     defaults: {
         titre: "Nouvelle note",
@@ -12,6 +12,7 @@ GeonotesYeoman.Models.NoteModel = Backbone.Model.extend({
 
         var title = '<h4 class="firstHeading">'+this.get("titre")+'</h4>';
         var content = '<p>'+this.get("description")+'</p>';
+        content += '<p><button class="btn btn-mini btn-primary" type="button" id="'+this.get("titre")+'">Lancer parcours</button></p>';
 
         var contentDiv = '<div>' + title + content + '</div>';
 

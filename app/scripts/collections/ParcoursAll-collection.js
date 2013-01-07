@@ -1,5 +1,5 @@
-GeonotesYeoman.Collections.ParcoursAllCollection = Backbone.Collection.extend({
+Geonotes.Collections.ParcoursAllCollection = Backbone.Collection.extend({
 
-  model: GeonotesYeoman.Models.ParcoursModel
+  model: Geonotes.Models.ParcoursModel
 
 });

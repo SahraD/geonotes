@@ -1,4 +1,4 @@
-GeonotesYeoman.Views.MapView = Backbone.View.extend({
+Geonotes.Views.MapView = Backbone.View.extend({
 
     el: $("#map_canvas"),
 
@@ -7,7 +7,7 @@ GeonotesYeoman.Views.MapView = Backbone.View.extend({
     maPosition: null,
 
     events: {
-        "dblclick" : "show_modal",
+        "dblclick" : "show_modal"
     },
 
     initialize: function(){
@@ -44,7 +44,7 @@ GeonotesYeoman.Views.MapView = Backbone.View.extend({
 
         theMap = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
 
-        maPosition = new GeonotesYeoman.Models.NoteModel();
+        maPosition = new Geonotes.Models.NoteModel();
         maPosition.set("titre", "Position actuelle");
         maPosition.set("description", "");
         maPosition.set("coords", latlng);

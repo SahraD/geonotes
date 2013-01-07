@@ -1,4 +1,4 @@
-GeonotesYeoman.Views.ParcoursListView = Backbone.View.extend({
+Geonotes.Views.ParcoursListView = Backbone.View.extend({
 
     el: $("#parcours-ul"),
 

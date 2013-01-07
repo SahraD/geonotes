@@ -50,7 +50,7 @@
             <div class="container">
                 <ul class="nav">
                     <li class="divider-vertical"></li>
-                    <li><button class="btn btn-primary"><a href=""><i class="icon-plus icon-white"></i></a></button></li>
+                    <li><button class="btn btn-primary" id="add-note-button"><i class="icon-plus icon-white"></i></button></li>
                     <li class="divider-vertical"></li>
                     <li><button class="btn btn-primary"><a href="form.html"><i class="icon-search icon-white"></i></a></button></li>
                     <li class="divider-vertical"></li>
@@ -96,7 +96,7 @@
         </div>
         <div class="modal-footer">
             <button class="btn" data-dismiss="modal" aria-hidden="true">Fermer</button>
-            <button id="saveNewNote" class="btn btn-primary">Sauver</button>
+            <button class="btn btn-primary saveNewNote">Sauver</button>
         </div>
     </div>
 
@@ -117,6 +117,7 @@
     <script src="scripts/vendor/jquery.min.js"></script>
     <script src="scripts/vendor/lodash.min.js"></script>
     <script src="scripts/vendor/backbone-min.js"></script>
+
     <script src="scripts/main.js"></script>
     <script src="scripts/views/application-view.js"></script>
     <script src="scripts/views/Map-view.js"></script>
@@ -128,6 +129,7 @@
     <script src="scripts/collections/Notes-collection.js"></script>
     <script src="scripts/collections/ParcoursAll-collection.js"></script>
     <script src="scripts/routes/application-router.js"></script>
+
 
     <script src="../components/bootstrap/js/bootstrap-modal.js"></script>
     <!-- endbuild -->

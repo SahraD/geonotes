@@ -1,3 +1,3 @@
-GeonotesYeoman.Models.ApplicationModel = Backbone.Model.extend({
+Geonotes.Models.ApplicationModel = Backbone.Model.extend({
 
 });

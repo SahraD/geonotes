@@ -1,5 +1,5 @@
-GeonotesYeoman.Collections.ApplicationCollection = Backbone.Collection.extend({
+Geonotes.Collections.ApplicationCollection = Backbone.Collection.extend({
 
-  model: GeonotesYeoman.Models.ApplicationModel
+  model: Geonotes.Models.ApplicationModel
 
 });

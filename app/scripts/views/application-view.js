@@ -1,7 +1,7 @@
-GeonotesYeoman.Views.applicationView = Backbone.View.extend({
+Geonotes.Views.applicationView = Backbone.View.extend({
 
     events: {
-        "click .btn#saveNewNote": "add_note"
+        "click .saveNewNote": "add_note"
     },
 
     add_note: function(){

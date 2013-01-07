@@ -1,4 +1,4 @@
-GeonotesYeoman.Models.ParcoursModel = Backbone.Model.extend({
+Geonotes.Models.ParcoursModel = Backbone.Model.extend({
 
     defaults : {
         nom: "Nouveau parcours",
@@ -40,6 +40,7 @@ GeonotesYeoman.Models.ParcoursModel = Backbone.Model.extend({
         };
 
         directionsService.route(request, function(result, status) {
+
             if (status == google.maps.DirectionsStatus.OK) {
                 directionsDisplay.setDirections(result);
             }

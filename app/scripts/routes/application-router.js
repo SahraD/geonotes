@@ -1,3 +1,3 @@
-GeonotesYeoman.Routers.ApplicationRouter = Backbone.Router.extend({
+Geonotes.Routers.ApplicationRouter = Backbone.Router.extend({
 
 });

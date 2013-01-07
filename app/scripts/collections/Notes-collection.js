@@ -1,5 +1,5 @@
-GeonotesYeoman.Collections.NotesCollection = Backbone.Collection.extend({
+Geonotes.Collections.NotesCollection = Backbone.Collection.extend({
 
-  model: GeonotesYeoman.Models.NoteModel
+  model: Geonotes.Models.NoteModel
 
 });
