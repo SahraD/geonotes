@@ -5,7 +5,7 @@ Geonotes.Models.ParcoursModel = Backbone.Model.extend({
         notes: null,
         distance: 0,
         denivele: 0
-    },
+    },    
 
     generate_directions: function(map){
 
@@ -39,13 +39,18 @@ Geonotes.Models.ParcoursModel = Backbone.Model.extend({
             avoidHighways: true
         };
 
+        var distance = 0;
+        
         directionsService.route(request, function(result, status) {
 
             if (status == google.maps.DirectionsStatus.OK) {
                 directionsDisplay.setDirections(result);
+                
+                distance = result.routes[0].legs[0].distance.value;
             }
         });
 
+        this.set("distance", distance);
     }
 
 });
