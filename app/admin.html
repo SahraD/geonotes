@@ -63,42 +63,45 @@
         </div>
     </div>
 
-    <div id="addForm" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="myModalLabel">Ajout d'une note</h3>
-        </div>
-        <div class="modal-body">
-            <form class="form-horizontal">
-                <div class="control-group">
-                    <label class="control-label" for="titre">Titre</label>
-                    <div class="controls">
-                        <input type="text" id="titre" placeholder="Titre">
+    <script type="text/template" id="newNoteForm_template">
+        <div id="addForm" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel">Ajout d'une note</h3>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="control-group">
+                        <label class="control-label" for="titre">Titre</label>
+                        <div class="controls">
+                            <input type="text" id="titre" placeholder="Titre">
+                        </div>
                     </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="commentaires">Commentaires</label>
-                    <div class="controls">
-                        <textarea id="commentaires"></textarea>
+                    <div class="control-group">
+                        <label class="control-label" for="commentaires">Commentaires</label>
+                        <div class="controls">
+                            <textarea id="commentaires"></textarea>
+                        </div>
                     </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="categories">Catégories</label>
-                    <div class="controls">
-                        <select id="categories">
-                            <option value="ville">Ville</option>
-                            <option value="campagne">Campagne</option>
-                            <option value="montagne">Montagne</option>
-                        </select>
+                    <div class="control-group">
+                        <label class="control-label" for="categories">Catégories</label>
+                        <div class="controls">
+                            <select id="categories">
+                                <option value="ville">Ville</option>
+                                <option value="campagne">Campagne</option>
+                                <option value="montagne">Montagne</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Fermer</button>
+                <button class="btn btn-primary" id="saveNewNote">Sauver</button>
+            </div>
         </div>
-        <div class="modal-footer">
-            <button class="btn" data-dismiss="modal" aria-hidden="true">Fermer</button>
-            <button class="btn btn-primary saveNewNote">Sauver</button>
-        </div>
-    </div>
+    </script>
+    <div id="newNoteForm"></div>
 
 
     <!--[if lt IE 7]>
@@ -122,6 +125,7 @@
     <script src="scripts/views/application-view.js"></script>
     <script src="scripts/views/Map-view.js"></script>
     <script src="scripts/views/ParcoursList-view.js"></script>
+    <script src="scripts/views/newNoteForm-view.js"></script>
     <script src="scripts/models/application-model.js"></script>
     <script src="scripts/models/Note-model.js"></script>
     <script src="scripts/models/Parcours-model.js"></script>

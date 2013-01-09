@@ -6,10 +6,6 @@ Geonotes.Views.MapView = Backbone.View.extend({
 
     maPosition: null,
 
-    events: {
-        "dblclick" : "show_modal"
-    },
-
     initialize: function(){
 
         this.initiate_geolocation();
@@ -53,6 +49,15 @@ Geonotes.Views.MapView = Backbone.View.extend({
 
         window.map.show_all_notes();
 
+        google.maps.event.addListener(theMap, "dblclick", function (e) {
+            var lat = e.latLng.lat();
+            var lng = e.latLng.lng();
+
+            var theCords = new google.maps.LatLng(lat, lng);
+
+            var newNoteForm = new Geonotes.Views.newNoteFormView(theCords);
+            newNoteForm.render();
+        });
 
     },
 
@@ -73,12 +78,6 @@ Geonotes.Views.MapView = Backbone.View.extend({
 
         });
 
-    },
-
-    show_modal: function(){
-        if(window.appli == "admin"){
-            $("#addForm").modal({show: true});
-        }
     }
 
 });

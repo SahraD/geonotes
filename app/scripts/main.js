@@ -8,13 +8,13 @@ window.Geonotes = {
     init: function() {
         
         var parcours = this.get_notes_and_tracks();
-        
+
         window.allParcours = new Geonotes.Collections.ParcoursAllCollection();
         
         $.each(parcours, function(index, value){
             window.allParcours.add(value);
         });
-        
+
         //Affichage de tous les parcours
         window.parcoursListe = new Geonotes.Views.ParcoursListView({collection : window.allParcours});
         window.parcoursListe.render();
@@ -53,21 +53,22 @@ window.Geonotes = {
         var notes2 = new Geonotes.Collections.NotesCollection();
         notes2.add(note3);
         notes2.add(note4);
+
+        console.log(notes2);
         
         var parcours1 = new Geonotes.Models.ParcoursModel();
         parcours1.set("nom", "1er Parcours");
         parcours1.set("notes", notes1);
         parcours1.set("distance", notes1.evaluate_distance());
-        
+        console.log(notes1.evaluate_distance());
         var parcours2 = new Geonotes.Models.ParcoursModel();
         parcours2.set("nom", "2ème Parcours");
         parcours2.set("notes", notes2);
         parcours2.set("distance", notes2.evaluate_distance());
-        console.log(parcours2.get("distance") + " metres");
         
         var parcours = [parcours1, parcours2];
-        
-        return parcours; 
+
+        return parcours;
     }
 };
 

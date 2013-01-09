@@ -4,6 +4,7 @@ Geonotes.Views.ParcoursListView = Backbone.View.extend({
 
     events: {
         "click .parcours": "show_parcours"
+
     },
 
     initialize : function () {

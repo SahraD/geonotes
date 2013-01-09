@@ -29,12 +29,10 @@ Geonotes.Collections.NotesCollection = Backbone.Collection.extend({
         };
 
         var distance = 0;
-        
-        directionsService.route(request, function(result, status) {
 
+        directionsService.route(request, function(result, status) {
             if (status == google.maps.DirectionsStatus.OK) {
                 distance = result.routes[0].legs[0].distance.value;
-                console.log(distance);
             }
         });
 
