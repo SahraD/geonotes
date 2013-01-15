@@ -5,6 +5,10 @@ Geonotes.Views.MapView = Backbone.View.extend({
     theMap: null,
 
     maPosition: null,
+    
+    events : {
+        "hold" : "add_note"
+    },
 
     initialize: function(){
 
@@ -48,17 +52,6 @@ Geonotes.Views.MapView = Backbone.View.extend({
         maPosition.create_marker(theMap);
 
         window.map.show_all_notes();
-
-        google.maps.event.addListener(theMap, "dblclick", function (e) {
-            var lat = e.latLng.lat();
-            var lng = e.latLng.lng();
-
-            var theCords = new google.maps.LatLng(lat, lng);
-
-            var newNoteForm = new Geonotes.Views.newNoteFormView(theCords);
-            newNoteForm.render();
-        });
-
     },
 
     show_parcours: function(parcours){
@@ -78,6 +71,23 @@ Geonotes.Views.MapView = Backbone.View.extend({
 
         });
 
+    },
+    
+    add_note: function(event){
+        
+        var theCoords;
+        
+        //Comment entrer dans cette fonction ?
+        google.maps.event.addListener(theMap, "touchend", function (e) {
+            console.log("In google map event");
+            var lat = e.latLng.lat();
+            var lng = e.latLng.lng();
+
+            theCoords = new google.maps.LatLng(lat, lng);
+            
+            var newNoteForm = new Geonotes.Views.newNoteFormView(theCoords);
+            newNoteForm.render();
+        });
     }
 
 });
