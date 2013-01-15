@@ -7,28 +7,44 @@ Seconde version de géonotes codée en utilisant [Yeoman](http://yeoman.io)
 
 ## TO-DO List
 
-- Création de l'interface d'admin
-	- ~~Voir avec de vrais parcours~~
-	- ~~Et notes seulement affichées sur la carte ? ~~
-	- ~~Formulaire d'ajout~~
-	- Modification des notes
-	- Modification des parcours 	
-- ~~Création en dur de parcours pour test de l'utilisateur~~
+### Partie Admin
 
-- Ajout des fonctions de recherche de parcours
+**Ajout de notes**
 
-- Lancement d'un seul parcours (pas tous les points reliés)
-	- Pour admin : effacer parcours précédent lors d'un affichage d'un autre
-	- Pas de parcours pour user : affichage des parcours depuis une note à faire
-	
-- ~~Affichage des notes correct~~
+*Manque le passage du passage des coordonnées cliquées en paramètre. Nécessite ensuite une sauvegarde en local puis envoi au serveur*
 
-- Calcul des distances
 
-- Calcul du dénivelé
+**Modification de notes**
 
-- Sauvegarde en local 
+*Click sur une note. Deux boutons : supprimer et modifier. Lorsque modifier, faire apparaître fenêtre modale avec les données et c'est bon. Donc ajout de fonctionnalités à la vue addNewNote*
 
-- Connexion avec serveur (Middlewares)
 
-- Création du REST (Web services)
+**Ajout de parcours à partir des notes**
+
+*Même principe que pour l'ajout de notes mais click depuis un bouton. Faire une liste des notes avec un SELECT (pas très user-friendly mais bon ...)*
+
+
+**Modification des parcours**
+
+*Même principe que pour modification de notes sauf que autre fenêtre (addNewTrack). Et basé sur un bouton*
+
+
+**Suppressions**
+
+### Partie utilisateur
+
+**Recherche de note ou de parcours (lequel des 2 ?)**
+
+*Faire une sorte de preg_match parmi toutes les données ...Ou trouver une librairie de recherche dans du JSON*
+
+**Lancer un parcours depuis une note choisie**
+
+*Ajouter un bouton pour lancer parcours. Problème si plusieurs parcours par note ...*
+
+
+### Général
+
+- LocalStorage
+- Calcul de distance et de dénivelé
+- REST
+- Serveur EJB
