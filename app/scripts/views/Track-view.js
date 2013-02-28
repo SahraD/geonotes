@@ -25,7 +25,7 @@ Geonotes.Views.TrackView = Backbone.View.extend({
 	},
 
 	deleteTrack: function() {
-		ths.model.destroy();
+		this.model.destroy();
 	},
 
 	editTrack: function() {

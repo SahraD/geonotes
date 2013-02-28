@@ -1,37 +1,30 @@
 Geonotes.Views.AddTrackView = Backbone.View.extend({
 
-	el: '.trackModal',
+	el: '#addTrackModal',
 
 	events: {
-		'click #submitTrack': 'createTrack',
-		'touch #submitTrack': 'createTrack'
+		'click #submitAddTrack': 'createTrack',
+		'touch #submitAddTrack': 'createTrack'
 	},
 
 	initialize: function() {
-		$('.trackModal').modal('show');
 
-		this.nameTrack = $('#nameTrack');
-		this.categoryTrack = $('#categoryTrack');
-		this.descriptionTrack = $('#descriptionTrack');
-		// this.notes = $('#notes');
+		$('#addTrackModal').modal();
+
+		console.log("Hello boy, I'm hidden !!");
+
+		this.nameTrack = $('#nameAddTrack');
+		this.categoryTrack = $('#categoryAddTrack');
+		this.descriptionTrack = $('#descriptionAddTrack');
 		this.showNotes();
+
+		this.clearForm();
 	},
 
 	createTrack: function(e) {
 		e.preventDefault();
 
-		console.log("In add track");
-
-		var notes = new Geonotes.Collections.NotesCollection;
-
-		$("input[type='checkbox']:checked").each( 
-		    function() { 
-		    	var note = Geonotes.notes.get($(this).val());
-				// console.log(note);
-				notes.create(note);
-		    } 
-		);
-
+		var notes = this.getNotes();
 		console.log(notes);
 
 		Geonotes.tracks.create({
@@ -39,29 +32,43 @@ Geonotes.Views.AddTrackView = Backbone.View.extend({
 			category: this.categoryTrack.val(),
 			notes: notes,
 			description: this.descriptionTrack.val()
-		});
+		}, {wait:true});
+
+		Geonotes.tracks.fetch();
 		
-		$('.trackModal').modal('hide');
+		$('#addTrackModal').modal('hide');
 
 		vent.trigger('addTrack:trackAdded');
 
 		this.clearForm();
+
+		this.undelegateEvents();
 	},
 
 	clearForm: function() {
 		this.nameTrack.val('');
 		this.categoryTrack.val('');
 		this.descriptionTrack.val('');
-		//this.notes.val('');
 	},
 
 	showNotes: function() {
-
-		console.log("In showNotes");
 		Geonotes.notes.fetch();
 		var allNotesView = new Geonotes.Views.NotesView({collection : Geonotes.notes }).render();
 		$('#allNotesView').html(allNotesView.el);
 
+	},
+
+	getNotes: function() {
+		var notes = new Geonotes.Collections.NotesCollection;
+
+		$("input[type='checkbox']:checked").each( 
+		    function() { 
+		    	var note = Geonotes.notes.get($(this).val());
+				notes.add(note);
+		    } 
+		);
+
+		return notes;
 	}
 
 });

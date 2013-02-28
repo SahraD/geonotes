@@ -1,44 +1,88 @@
 Geonotes.Views.EditTrackView = Backbone.View.extend({
 
-	template: template('editTrackTemplate'),
-
-	initialize: function() {
-		this.render();
-
-		this.form = this.$('form');
-		this.title = this.form.find('#edit_title');
-		this.category = this.form.find('#edit_category');
-		this.description = this.form.find('#edit_description');
-		this.notes = this.form.find('#edit_notes');
-	},
+	el: '#editTrackModal',
 
 	events: {
-		'submit form': 'submit',
-		'click button.cancel': 'cancel'
+		'click #submitEditTrack': 'editTrack',
+		'touch #submitEditTrack': 'editTrack'
 	},
 
-	submit: function(e) {
+	initialize: function() {
+		$('#editTrackModal').modal('show');
+
+		this.nameTrack = $('#nameEditTrack');
+		this.categoryTrack = $('#categoryEditTrack');
+		this.descriptionTrack = $('#descriptionEditTrack');
+		this.showNotes();
+
+		this.nameTrack.val(this.model.get('name'));
+		this.categoryTrack.val(this.model.get('category'));
+		this.descriptionTrack.val(this.model.get('description'));
+		this.checkNotes();
+
+	},
+
+	editTrack: function(e) {
 		e.preventDefault();
 
+		var notes = this.getNotes();
+
 		this.model.save({
-			title: this.title.val(),
-			category: this.category.val(),
-			description: this.description.val(),
-			notes: this.notes.val()
+			name: this.nameTrack.val(),
+			category: this.categoryTrack.val(),
+			notes: notes,
+			description: this.descriptionTrack.val()
+		}, {wait:true});
+
+		Geonotes.tracks.fetch();
+		
+		$('#editTrackModal').modal('hide');
+
+		vent.trigger('editTrack:trackEdited');
+
+		this.undelegateEvents();
+
+	},
+
+	showNotes: function() {
+
+		Geonotes.notes.fetch();
+		var allNotesView = new Geonotes.Views.NotesView({collection : Geonotes.notes }).render();
+		$('#allNotesViewEdit').html(allNotesView.el);
+
+	},
+
+	checkNotes: function() {
+
+		var notesCollection = new Geonotes.Collections.NotesCollection;
+
+		var notes = this.model.get('notes');
+
+		_.each( notes,  function(note) { 
+		    	
+			notesCollection.create(note);
 		});
 
-		this.remove();
+		$("input[type='checkbox']").each( 
+		    function() {
+		    	if(notesCollection.get($(this).val())){
+		    		$(this).attr('checked', true);
+		    	}
+		    } 
+		);
 	},
 
-	cancel: function() {
-		this.remove();
-	},
+	getNotes: function() {
+		var notes = new Geonotes.Collections.NotesCollection;
 
-	render: function() {
-		var html = this.template( this.model.toJSON() );
+		$("input[type='checkbox']:checked").each( 
+		    function() { 
+		    	var note = Geonotes.notes.get($(this).val());
+				notes.add(note);
+		    } 
+		);
 
-		this.$el.html(html);
-		return this;
+		return notes;
 	}
 
 });

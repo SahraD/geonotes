@@ -6,8 +6,14 @@ Geonotes.Views.MapView = Backbone.View.extend({
 
         vent.on('track:show', this.showTrack, this);
 
+        //Création d'une variable gloable dans l'application pour gérer les positions
+        Geonotes.mapModel = new Geonotes.Models.MapModel;
+        Geonotes.mapModel.set('latitude', 0);
+        Geonotes.mapModel.set('longitude', 0);
+
         this.initiateGeolocation();
         this.$el.height($(window).height() - $("#header").height() - $("#footer").height() -10);
+
     },
 
     initiateGeolocation: function() {
@@ -17,23 +23,20 @@ Geonotes.Views.MapView = Backbone.View.extend({
 
     getPositionSuccess: function(position){
 
-        window.map.initMap(position);
+        Geonotes.mapModel.set('latitude', position.coords.latitude);
+        Geonotes.mapModel.set('longitude', position.coords.longitude);
+        window.map.initMap();
     },
 
     getPositionError: function() {
 		alert("Impossible to get your current position");
-		var position = {
-			coords: {
-				latitude: 0,
-				longitude: 0
-			}
-		};
-		window.map.initMap(position);
+		
+		window.map.initMap();
     },
 
-    initMap: function(position) {
+    initMap: function() {
 
-        var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        var latlng = new google.maps.LatLng(Geonotes.mapModel.get('latitude'), Geonotes.mapModel.get('longitude'));
 
         var myOptions = {
             zoom: 15,
@@ -59,22 +62,21 @@ Geonotes.Views.MapView = Backbone.View.extend({
         maPosition = new Geonotes.Models.NoteModel();
         maPosition.set('name', 'Position actuelle');
         maPosition.set('description', '');
-        maPosition.set('latitude', position.coords.latitude);
-        maPosition.set('longitude', position.coords.longitude);
+        maPosition.set('latitude', Geonotes.mapModel.get('latitude'));
+        maPosition.set('longitude', Geonotes.mapModel.get('longitude'));
         maPosition.set('category', '');
 
-        this.showMarker(maPosition, map);
+        this.showMarker(maPosition, map, '../img/purple_markerP.png');
         this.showMarkers(map);
 
-        //Pour créer une variable globale qui correspond à l'objet map de Google
-        Geonotes.mapModel = new Geonotes.Models.MapModel;
+        var directionsDisplay = new google.maps.DirectionsRenderer();
+        directionsDisplay.setMap(map);
+        var directionsService = new google.maps.DirectionsService();
+
+        // On ajoute des propriétés à notre variable globale pour gérer la sauvegarde de la carte
         Geonotes.mapModel.set("map", map);
-
-        // Créer un listener sur hold qui permet de récupérer la position actuelle
-        // Envoi vent.trigger('map:hold', position)
-        // Récupérer cela dans la vue globale
-        
-
+        Geonotes.mapModel.set("directionsDisplay", directionsDisplay);
+        Geonotes.mapModel.set("directionsService", directionsService);
 
     },
 
@@ -84,7 +86,10 @@ Geonotes.Views.MapView = Backbone.View.extend({
 
     showTrack: function(track) {
 
+        // On récupère des variables initialisées lors de initMap
         var map = Geonotes.mapModel.get("map");
+        var directionsService = Geonotes.mapModel.get("directionsService");
+        var directionsDisplay = Geonotes.mapModel.get("directionsDisplay");
 
         var positions = new Array();
         //Récupérer les notes selon le parcours
@@ -107,10 +112,6 @@ Geonotes.Views.MapView = Backbone.View.extend({
             var latLng = new google.maps.LatLng(note.get('latitude'), note.get('longitude'));
             positions.push(latLng);
         });
-
-        var directionsDisplay = new google.maps.DirectionsRenderer();
-        directionsDisplay.setMap(map);
-        var directionsService = new google.maps.DirectionsService();
 
         var waypoints = [];
 
@@ -138,7 +139,7 @@ Geonotes.Views.MapView = Backbone.View.extend({
         });
     },
 
-    showMarker: function(note, map) {
+    showMarker: function(note, map, icon) {
 
         var noteView = new Geonotes.Views.NoteView({model: note});
         var contentDiv = noteView.render().el;
@@ -149,11 +150,22 @@ Geonotes.Views.MapView = Backbone.View.extend({
 
         //creer marker sur la map
         var coords = new google.maps.LatLng(note.get('latitude'), note.get('longitude'));
-        var marker = new google.maps.Marker({
-            position: coords,
-            map: map,
-            title: note.get("titre")
-        });
+        if(icon){
+            var marker = new google.maps.Marker({
+                position: coords,
+                map: map,
+                title: note.get("titre"),
+                icon: icon
+            });
+        }
+        else {
+            var marker = new google.maps.Marker({
+                position: coords,
+                map: map,
+                title: note.get("titre")
+            });
+        }
+        
 
         //ajouter event listener
         google.maps.event.addListener(marker, 'click', function() {

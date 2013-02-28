@@ -1,7 +1,7 @@
 Geonotes.Views.NotesView = Backbone.View.extend({
 
 	initialize: function() {
-		//this.collection.on('add', this.addOne, this);
+		
 	},
 
 	render: function() {

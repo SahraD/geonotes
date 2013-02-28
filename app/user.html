@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <title>Geonotes - Admin</title>
+        <meta name="description" content="This is the geonotes application by Matthis Duclos and Alexandre Laurent"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles/bootstrap.css" />
+        <link rel="stylesheet" href="styles/bootstrap-responsive.css" />
+
+    </head>
+    <body>
+        <div class="navbar navbar-fixed-top navbar-inverse" id="header">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="brand">Geonotes</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="map_canvas"></div>
+
+        <div class="navbar navbar-fixed-bottom navbar-inverse" id="footer">
+            <div class="navbar-inner">
+                <div class="container">
+                    <ul class="nav"></ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Templates -->
+        <script type="text/template" id="trackView">
+            <a><%= name %> (<%= distance %>m)</a>
+        </script>
+
+        <script type="text/template" id="noteView">
+            <h4 class="firstHeading"><%= name %> </h4>
+            <p> <%= description %> </p>
+            <p> <%= category %> </p>
+            <p>
+                <button class="btn btn-mini btn-primary showTrack" type="button" id="<%= id %>">Begin track onClick="fireBeginTrack(this);"</button> 
+                <button class="btn btn-mini btn-primary editNote" type="button" id="<%= id %>" onClick="fireEditNote(this);">
+                    Edit note
+                </button>
+            </p>
+        </script>
+
+        <script type="text/template" id="noteViewCheckbox">
+            <input type="checkbox" name="notesTrack" value="<%= id %>"> <%= name %> </input> 
+            <hr></hr>
+        </script>
+
+        <!-- build:js scripts/scripts.js -->
+        <!-- Vendors -->
+        <script src="scripts/vendor/jquery.min.js"></script>
+        <script src="scripts/vendor/lodash.min.js"></script>
+        <script src="scripts/vendor/backbone-min.js"></script>
+        <script src="scripts/vendor/backbone.localStorage-min.js"></script>
+        <script src="scripts/vendor/bootstrap.min.js"></script>
+        <script src="scripts/vendor/quo.js"></script>
+        <script type="text/javascript"
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-rrNMRI6NGbR_kEkFhpVc5EtBFgV6jwA&sensor=true">
+        </script>
+
+        <!-- Main -->
+        <script src="scripts/main.js"></script>
+
+        <!-- Views -->
+        <script src="scripts/views/User-view.js"></script>
+        <script src="scripts/views/Map-view.js"></script>
+        <script src="scripts/views/Note-view.js"></script>
+
+        <!-- Models -->
+        <script src="scripts/models/application-model.js"></script>
+        <script src="scripts/models/Note-model.js"></script>
+        <script src="scripts/models/Track-model.js"></script>
+        <script src="scripts/models/Map-model.js"></script>
+
+        <!-- Collections -->
+        <script src="scripts/collections/application-collection.js"></script>
+        <script src="scripts/collections/Notes-collection.js"></script>
+        <script src="scripts/collections/Tracks-collection.js"></script>
+
+        <!-- Router -->
+        <script src="scripts/routes/application-router.js"></script>
+
+        <!-- Initialisations -->
+        <script>
+            $('#addTrackButton').click(function(){
+                vent.trigger('track:add');
+            });
+
+            var fireEditNote = function(el){
+                alert("Vous ne pouvez pas éditer dans ce mode");
+            };
+
+            var fireBeginTrack = function(el){
+
+                vent.trigger('track:show');
+            };
+
+            Geonotes.tracks = new Geonotes.Collections.TracksCollection;
+            Geonotes.notes = new Geonotes.Collections.NotesCollection;
+            new Geonotes.Views.UserView({ collection: Geonotes.tracks });
+
+        </script>
+
+        <!-- endbuild -->
+
+    </body>
+</html>

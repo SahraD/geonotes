@@ -1,53 +1,42 @@
 Geonotes.Views.AddNoteView = Backbone.View.extend({
 
-	el: '.noteModal',
+	el: '#addNoteModal',
 
 	events: {
-		'click #submit': 'createNote',
-		'touch #submit': 'createNote'
+		'click #submitAddNote': 'createNote',
+		'touch #submitAddNote': 'createNote'
 	},
 
 	initialize: function(position) {
-		$('.noteModal').modal({show: true});
-
-		this.name = $('#name');
-		this.category = $('#category');
-		this.description = $('#description');
+		$('#addNoteModal').modal({show: true});
 		this.latitude = position[0];
 		this.longitude = position[1];
-
-		console.log(position[0]);
 	},
 
 	createNote: function(e) {
 		e.preventDefault();
 
 		Geonotes.notes.create({
-			name: this.name.val(), 
-			description: this.description.val(), 
-			category: this.category.val(), 
+			name: $('#nameAddNote').val(), 
+			description: $('#categoryAddNote').val(), 
+			category: $('#descriptionAddNote').val(), 
 			latitude: this.latitude, 
 			longitude: this.longitude
 		});
 
 		this.clearForm();
 
-		$('.noteModal').modal('hide');
+		$('#addNoteModal').modal('hide');
 
-		var location = {
-			coords: {
-				latitude: this.latitude, 
-				longitude: this.longitude
-			}
-		}
+		vent.trigger('addNote:noteAdded');
 
-		vent.trigger('addNote:noteAdded', location);
+		this.undelegateEvents();
 	},
 
 	clearForm: function() {
-		this.name.val('');
-		this.category.val('');
-		this.description.val('');
+		$('#nameAddNote').val('');
+		$('#categoryAddNote').val('');
+		$('#descriptionAddNote').val('');
 	}
 
 });

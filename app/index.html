@@ -37,11 +37,7 @@
                 <div class="container">
                     <ul class="nav">
                         <li class="divider-vertical"></li>
-                        <li><button class="btn btn-primary" id="addTrackButton"><i class="icon-plus icon-white"></i></button></li>
-                        <li class="divider-vertical"></li>
-                        <li><button class="btn btn-primary"><a href=""><i class="icon-envelope icon-white"></i></a></button></li>
-                        <li class="divider-vertical"></li>
-                        <li><button class="btn btn-primary"><a href="index.html"><i class="icon-road icon-white"></i></a></button></li>
+                        <li><button class="btn btn-primary" id="addTrackButton"><i class="icon-plus icon-white"></i> Ajouter parcours</button></li>
                         <li class="divider-vertical"></li>
                     </ul>
                 </div>
@@ -57,7 +53,12 @@
             <h4 class="firstHeading"><%= name %> </h4>
             <p> <%= description %> </p>
             <p> <%= category %> </p>
-            <p><button class="btn btn-mini btn-primary showTrack" type="button" id="<%= title %>">Begin track</button> <button class="btn btn-mini btn-primary editNote" type="button" id="<%= title %>">Edit note</button></p>
+            <p>
+                <button class="btn btn-mini btn-primary showTrack" type="button" id="<%= title %>">Begin track</button> 
+                <button class="btn btn-mini btn-primary editNote" type="button" id="<%= id %>" onClick="fireEditNote(this);">
+                    Edit note
+                </button>
+            </p>
         </script>
 
         <script type="text/template" id="noteViewCheckbox">
@@ -66,34 +67,34 @@
         </script>
 
         <!-- Fenêtres modales -->
-        <div class="modal hide fade noteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div id="addNoteModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3>Ajouter une note</h3>
+                <h3>Ajout d'une note</h3>
             </div>
             <div class="modal-body">
                 <div class="form-horizontal">
                     <div class="control-group">
-                        <label class="control-label" for="name">Nom</label>
+                        <label class="control-label" for="nameAddNote">Nom</label>
                         <div class="controls">
-                            <input type="text" id="name" placeholder="Nom">
+                            <input type="text" id="nameAddNote" placeholder="Nom">
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label" for="category">Catégorie</label>
+                        <label class="control-label" for="categoryAddNote">Catégorie</label>
                         <div class="controls">
-                            <input type="text" id="category" placeholder="Catégorie">
+                            <input type="text" id="categoryAddNote" placeholder="Catégorie">
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label" for="description">Description</label>
+                        <label class="control-label" for="descriptionAddNote">Description</label>
                         <div class="controls">
-                            <textarea id="description"></textarea>
+                            <textarea id="descriptionAddNote"></textarea>
                         </div>
                     </div>
                     <div class="control-group">
                         <div class="controls">
-                            <button class="btn btn-primary" id="submit">Enregistrer</button>
+                            <button class="btn btn-primary" id="submitAddNote">Enregistrer</button>
                             <button class="btn" data-dismiss="modal" aria-hidden="true">Annuler</button>
                         </div>
                     </div>
@@ -101,29 +102,64 @@
             </div>
         </div>
 
-        <div class="modal hide fade trackModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div id="editNoteModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3>Ajouter un parcours</h3>
+                <h3>Edition d'une note</h3>
             </div>
             <div class="modal-body">
                 <div class="form-horizontal">
                     <div class="control-group">
-                        <label class="control-label" for="nameTrack">Nom</label>
+                        <label class="control-label" for="nameEditNote">Nom</label>
                         <div class="controls">
-                            <input type="text" id="nameTrack" placeholder="Nom">
+                            <input type="text" id="nameEditNote" placeholder="Nom">
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label" for="categoryTrack">Catégorie</label>
+                        <label class="control-label" for="categoryEditNote">Catégorie</label>
                         <div class="controls">
-                            <input type="text" id="categoryTrack" placeholder="Catégorie">
+                            <input type="text" id="categoryEditNote" placeholder="Catégorie">
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label" for="descriptionTrack">Description</label>
+                        <label class="control-label" for="description">Description</label>
                         <div class="controls">
-                            <textarea id="descriptionTrack"></textarea>
+                            <textarea id="descriptionEditNote"></textarea>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls">
+                            <button class="btn btn-primary" id="submitEditNote">Enregistrer</button>
+                            <button class="btn" data-dismiss="modal" aria-hidden="true">Annuler</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="addTrackModal"class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3>Ajout d'un parcours</h3>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="control-group">
+                        <label class="control-label" for="nameAddTrack">Nom</label>
+                        <div class="controls">
+                            <input type="text" id="nameAddTrack" placeholder="Nom">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="categoryAddTrack">Catégorie</label>
+                        <div class="controls">
+                            <input type="text" id="categoryAddTrack" placeholder="Catégorie">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="descriptionAddTrack">Description</label>
+                        <div class="controls">
+                            <textarea id="descriptionAddTrack"></textarea>
                         </div>
                     </div>
                     <div class="control-group">
@@ -134,7 +170,49 @@
                     </div>
                     <div class="control-group">
                         <div class="controls">
-                            <button class="btn btn-primary" id="submitTrack">Enregistrer</button>
+                            <button class="btn btn-primary" id="submitAddTrack">Enregistrer</button>
+                            <button class="btn" data-dismiss="modal" aria-hidden="true">Annuler</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="editTrackModal"class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3>Edition d'un parcours</h3>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="control-group">
+                        <label class="control-label" for="nameEditTrack">Nom</label>
+                        <div class="controls">
+                            <input type="text" id="nameEditTrack" placeholder="Nom">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="categoryEditTrack">Catégorie</label>
+                        <div class="controls">
+                            <input type="text" id="categoryEditTrack" placeholder="Catégorie">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="descriptionEditTrack">Description</label>
+                        <div class="controls">
+                            <textarea id="descriptionEditTrack"></textarea>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Notes</label>
+                        <div class="controls">
+                            <div id="allNotesViewEdit"></div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls">
+                            <button class="btn btn-primary" id="submitEditTrack">Enregistrer</button>
                             <button class="btn" data-dismiss="modal" aria-hidden="true">Annuler</button>
                         </div>
                     </div>
@@ -188,18 +266,16 @@
         <!-- Initialisations -->
         <script>
             $('#addTrackButton').click(function(){
-                console.log("addTrackButton clicked");
                 vent.trigger('track:add');
             });
 
+            var fireEditNote = function(el){
+                vent.trigger('note:edit', el.id);
+            };
+
             Geonotes.tracks = new Geonotes.Collections.TracksCollection;
             Geonotes.notes = new Geonotes.Collections.NotesCollection;
-            // Geonotes.tracks.fetch().then(function() {
-            //     Geonotes.notes.fetch().then( function(){
             new Geonotes.Views.ApplicationView({ collection: Geonotes.tracks });
-            //     });
-            // });
-            
 
         </script>
 
