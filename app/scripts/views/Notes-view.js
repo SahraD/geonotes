@@ -1,7 +1,7 @@
 Geonotes.Views.NotesView = Backbone.View.extend({
 
 	initialize: function() {
-		this.collection.on('add', this.addOne, this);
+		//this.collection.on('add', this.addOne, this);
 	},
 
 	render: function() {
@@ -10,7 +10,8 @@ Geonotes.Views.NotesView = Backbone.View.extend({
 	},
 
 	addOne: function(note) {
-		var noteView = new Geonotes.Views.Note({ model: note });
+		var noteView = new Geonotes.Views.NoteView({ model: note });
+		noteView.changeTemplateToCheckbox();
 		this.$el.append(noteView.render().el);
 	}
 

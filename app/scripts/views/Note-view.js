@@ -1,10 +1,17 @@
 Geonotes.Views.NoteView = Backbone.View.extend({
 
-	template: template('noteView'),
+	template: null,
 
 	initialize: function() {
 		this.model.on('destroy', this.unrender, this);
 		this.model.on('change', this.render, this);
+
+		this.template = template('noteView');
+
+	},
+
+	changeTemplateToCheckbox: function() {
+		this.template = template('noteViewCheckbox');
 	},
 
 	render: function() {

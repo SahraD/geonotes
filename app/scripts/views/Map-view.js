@@ -93,8 +93,17 @@ Geonotes.Views.MapView = Backbone.View.extend({
         // notes.fetch({url : 'http://192.168.0.13:8080/war/rest/track/' + track.get('trackId') + '/notes'}).then(function() {
 
         Geonotes.notes.fetch();
-        Geonotes.notes.each(function(note){
 
+        var notesCollection = new Geonotes.Collections.NotesCollection;
+
+        var notes = track.get('notes');
+        console.log(notes);
+
+        _.each(notes, function(note){
+            notesCollection.push(note);
+        });
+
+        notesCollection.each( function(note) {
             var latLng = new google.maps.LatLng(note.get('latitude'), note.get('longitude'));
             positions.push(latLng);
         });

@@ -22,9 +22,6 @@ Geonotes.Views.AddNoteView = Backbone.View.extend({
 	createNote: function(e) {
 		e.preventDefault();
 
-		var note = new Geonotes.Models.NoteModel({name: this.name.val(), description: this.description.val(), category: this.category.val(), latitude: this.latitude, longitude: this.longitude});
-		console.log(note);
-
 		Geonotes.notes.create({
 			name: this.name.val(), 
 			description: this.description.val(), 

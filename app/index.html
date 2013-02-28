@@ -39,8 +39,6 @@
                         <li class="divider-vertical"></li>
                         <li><button class="btn btn-primary" id="addTrackButton"><i class="icon-plus icon-white"></i></button></li>
                         <li class="divider-vertical"></li>
-                        <li><button class="btn btn-primary"><a href="form.html"><i class="icon-search icon-white"></i></a></button></li>
-                        <li class="divider-vertical"></li>
                         <li><button class="btn btn-primary"><a href=""><i class="icon-envelope icon-white"></i></a></button></li>
                         <li class="divider-vertical"></li>
                         <li><button class="btn btn-primary"><a href="index.html"><i class="icon-road icon-white"></i></a></button></li>
@@ -55,7 +53,6 @@
             <a><%= name %> (<%= distance %>m)</a>
         </script>
 
-
         <script type="text/template" id="noteView">
             <h4 class="firstHeading"><%= name %> </h4>
             <p> <%= description %> </p>
@@ -63,6 +60,12 @@
             <p><button class="btn btn-mini btn-primary showTrack" type="button" id="<%= title %>">Begin track</button> <button class="btn btn-mini btn-primary editNote" type="button" id="<%= title %>">Edit note</button></p>
         </script>
 
+        <script type="text/template" id="noteViewCheckbox">
+            <input type="checkbox" name="notesTrack" value="<%= id %>"> <%= name %> </input> 
+            <hr></hr>
+        </script>
+
+        <!-- Fenêtres modales -->
         <div class="modal hide fade noteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -91,6 +94,47 @@
                     <div class="control-group">
                         <div class="controls">
                             <button class="btn btn-primary" id="submit">Enregistrer</button>
+                            <button class="btn" data-dismiss="modal" aria-hidden="true">Annuler</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal hide fade trackModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3>Ajouter un parcours</h3>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="control-group">
+                        <label class="control-label" for="nameTrack">Nom</label>
+                        <div class="controls">
+                            <input type="text" id="nameTrack" placeholder="Nom">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="categoryTrack">Catégorie</label>
+                        <div class="controls">
+                            <input type="text" id="categoryTrack" placeholder="Catégorie">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="descriptionTrack">Description</label>
+                        <div class="controls">
+                            <textarea id="descriptionTrack"></textarea>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Notes</label>
+                        <div class="controls">
+                            <div id="allNotesView"></div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls">
+                            <button class="btn btn-primary" id="submitTrack">Enregistrer</button>
                             <button class="btn" data-dismiss="modal" aria-hidden="true">Annuler</button>
                         </div>
                     </div>
@@ -144,6 +188,7 @@
         <!-- Initialisations -->
         <script>
             $('#addTrackButton').click(function(){
+                console.log("addTrackButton clicked");
                 vent.trigger('track:add');
             });
 
@@ -154,6 +199,8 @@
             new Geonotes.Views.ApplicationView({ collection: Geonotes.tracks });
             //     });
             // });
+            
+
         </script>
 
         <!-- endbuild -->
