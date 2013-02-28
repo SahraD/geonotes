@@ -26,10 +26,10 @@ Geonotes.Views.AddNoteView = Backbone.View.extend({
 		console.log(note);
 
 		Geonotes.notes.create({
-			name: this.name.val(),
-			category: this.category.val(),
-			description: this.description.val(),
-			latitude: this.latitude,
+			name: this.name.val(), 
+			description: this.description.val(), 
+			category: this.category.val(), 
+			latitude: this.latitude, 
 			longitude: this.longitude
 		});
 
@@ -37,7 +37,14 @@ Geonotes.Views.AddNoteView = Backbone.View.extend({
 
 		$('.noteModal').modal('hide');
 
-		vent.trigger('addNote:noteAdded');
+		var location = {
+			coords: {
+				latitude: this.latitude, 
+				longitude: this.longitude
+			}
+		}
+
+		vent.trigger('addNote:noteAdded', location);
 	},
 
 	clearForm: function() {

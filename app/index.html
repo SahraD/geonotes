@@ -149,11 +149,11 @@
 
             Geonotes.tracks = new Geonotes.Collections.TracksCollection;
             Geonotes.notes = new Geonotes.Collections.NotesCollection;
-            Geonotes.tracks.fetch().then(function() {
-                Geonotes.notes.fetch().then( function(){
-                    new Geonotes.Views.ApplicationView({ collection: Geonotes.tracks });
-                });
-            });
+            // Geonotes.tracks.fetch().then(function() {
+            //     Geonotes.notes.fetch().then( function(){
+            new Geonotes.Views.ApplicationView({ collection: Geonotes.tracks });
+            //     });
+            // });
         </script>
 
         <!-- endbuild -->

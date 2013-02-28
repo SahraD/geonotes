@@ -5,6 +5,7 @@ Geonotes.Views.ApplicationView = Backbone.View.extend({
 		vent.on('track:edit', this.editTrack, this);
 		vent.on('track:add', this.addTrack);
 		vent.on('map:addNote', this.addNote, this);
+		vent.on('addNote:noteAdded', this.updateMap, this)
 
 		// Ajouter vent.on('map:hold', this.addNote, this) ou this est la position (normalement)
 		// Ajouter vent.on('note:edit', this.editNote, this) ou this est la note (normalement)
@@ -36,6 +37,11 @@ Geonotes.Views.ApplicationView = Backbone.View.extend({
 
 	addNote: function(position) {
 		var addNoteView = new Geonotes.Views.AddNoteView(position);
+	},
+
+	updateMap: function(position) {
+		console.log(position);
+		window.map.initMap(position);
 	}
 
 });

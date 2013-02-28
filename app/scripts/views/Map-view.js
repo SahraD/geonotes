@@ -89,43 +89,43 @@ Geonotes.Views.MapView = Backbone.View.extend({
         var positions = new Array();
         //Récupérer les notes selon le parcours
         
-        var notes = new Geonotes.Collections.NotesCollection;
-        notes.fetch({url : 'http://192.168.0.13:8080/war/rest/track/' + track.get('trackId') + '/notes'}).then(function() {
+        // var notes = new Geonotes.Collections.NotesCollection;
+        // notes.fetch({url : 'http://192.168.0.13:8080/war/rest/track/' + track.get('trackId') + '/notes'}).then(function() {
 
-            notes.each(function(note){
+        Geonotes.notes.fetch();
+        Geonotes.notes.each(function(note){
 
-                var latLng = new google.maps.LatLng(note.get('latitude'), note.get('longitude'));
-                positions.push(latLng);
+            var latLng = new google.maps.LatLng(note.get('latitude'), note.get('longitude'));
+            positions.push(latLng);
+        });
+
+        var directionsDisplay = new google.maps.DirectionsRenderer();
+        directionsDisplay.setMap(map);
+        var directionsService = new google.maps.DirectionsService();
+
+        var waypoints = [];
+
+        for(var i=1; i<positions.length -1; i++){
+            waypoints.push({
+                location: positions[i],
+                stopover: false
             });
+        }
 
-            var directionsDisplay = new google.maps.DirectionsRenderer();
-            directionsDisplay.setMap(map);
-            var directionsService = new google.maps.DirectionsService();
+        var request = {
+            origin : positions[0],
+            destination: positions[positions.length-1],
+            waypoints: waypoints,
+            travelMode: google.maps.TravelMode.WALKING,
+            avoidHighways: true
+        };
 
-            var waypoints = [];
+        
+        directionsService.route(request, function(result, status) {
 
-            for(var i=1; i<positions.length -1; i++){
-                waypoints.push({
-                    location: positions[i],
-                    stopover: false
-                });
+            if (status == google.maps.DirectionsStatus.OK) {
+                directionsDisplay.setDirections(result);
             }
-
-            var request = {
-                origin : positions[0],
-                destination: positions[positions.length-1],
-                waypoints: waypoints,
-                travelMode: google.maps.TravelMode.WALKING,
-                avoidHighways: true
-            };
-
-            
-            directionsService.route(request, function(result, status) {
-
-                if (status == google.maps.DirectionsStatus.OK) {
-                    directionsDisplay.setDirections(result);
-                }
-            });
         });
     },
 
@@ -155,9 +155,9 @@ Geonotes.Views.MapView = Backbone.View.extend({
     showMarkers: function(map) {
         var self = this;
 
-        var notes = new Geonotes.Collections.NotesCollection;
-        notes.fetch().then(function() {
-            notes.each( function(note) {
+        //var notes = new Geonotes.Collections.NotesCollection;
+        Geonotes.notes.fetch().then(function() {
+            Geonotes.notes.each( function(note) {
                 self.showMarker(note, map);               
             });
         });
