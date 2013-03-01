@@ -27,26 +27,35 @@
         <div class="navbar navbar-fixed-bottom navbar-inverse" id="footer">
             <div class="navbar-inner">
                 <div class="container">
-                    <ul class="nav"></ul>
+                    <ul class="nav">
+                        <li class="divider-vertical"></li>
+                        <li><button class="btn btn-primary" id="chooseTrackButton"><i class="icon-plus icon-white"></i> Choisir parcours</button></li>
+                        <li class="divider-vertical"></li>
+                    </ul>
                 </div>
+            </div>
+        </div>
+
+        <!-- Fenêtre modale -->
+        <div id="chooseTrackModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3>Choix d'un parcours</h3>
+            </div>
+            <div class="modal-body">
+                <div id="allTracks"></div>
             </div>
         </div>
 
         <!-- Templates -->
         <script type="text/template" id="trackView">
-            <a><%= name %> (<%= distance %>m)</a>
+            <a class="closeModal"><%= name %> (<%= distance %>m)</a>
         </script>
 
         <script type="text/template" id="noteView">
             <h4 class="firstHeading"><%= name %> </h4>
             <p> <%= description %> </p>
             <p> <%= category %> </p>
-            <p>
-                <button class="btn btn-mini btn-primary showTrack" type="button" id="<%= id %>">Begin track onClick="fireBeginTrack(this);"</button> 
-                <button class="btn btn-mini btn-primary editNote" type="button" id="<%= id %>" onClick="fireEditNote(this);">
-                    Edit note
-                </button>
-            </p>
         </script>
 
         <script type="text/template" id="noteViewCheckbox">
@@ -73,6 +82,8 @@
         <script src="scripts/views/User-view.js"></script>
         <script src="scripts/views/Map-view.js"></script>
         <script src="scripts/views/Note-view.js"></script>
+        <script src="scripts/views/Track-view.js"></script>
+        <script src="scripts/views/Tracks-view.js"></script>
 
         <!-- Models -->
         <script src="scripts/models/application-model.js"></script>
@@ -90,22 +101,22 @@
 
         <!-- Initialisations -->
         <script>
-            $('#addTrackButton').click(function(){
-                vent.trigger('track:add');
+            Geonotes.tracks = new Geonotes.Collections.TracksCollection;
+            Geonotes.notes = new Geonotes.Collections.NotesCollection;
+            window.user = true;
+            new Geonotes.Views.UserView({ collection: Geonotes.tracks});
+
+            $('#chooseTrackButton').click(function(){
+                $('#chooseTrackModal').modal();
             });
+
+            $('.closeModal').click(function() {
+                $('#chooseTrackModal').modal('hide');
+            })
 
             var fireEditNote = function(el){
                 alert("Vous ne pouvez pas éditer dans ce mode");
             };
-
-            var fireBeginTrack = function(el){
-
-                vent.trigger('track:show');
-            };
-
-            Geonotes.tracks = new Geonotes.Collections.TracksCollection;
-            Geonotes.notes = new Geonotes.Collections.NotesCollection;
-            new Geonotes.Views.UserView({ collection: Geonotes.tracks });
 
         </script>
 

@@ -11,6 +11,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="styles/bootstrap.css" />
         <link rel="stylesheet" href="styles/bootstrap-responsive.css" />
+        <link rel="stylesheet" href="styles/font-awesome.min.css" />
         <link rel="stylesheet" href="styles/main.css"/>
 
     </head>
@@ -46,17 +47,20 @@
 
         <!-- Templates -->
         <script type="text/template" id="trackView">
-            <a><%= name %> (<%= distance %>m)</a>
+            <a>
+                <span class="showTrack"><%= name %> (<%= distance %>m)</span> 
+                <i class="icon-remove-sign icon-large align-right"></i>
+                <i class="icon-edit icon-large align-right"></i>
+            </a>
         </script>
 
         <script type="text/template" id="noteView">
             <h4 class="firstHeading"><%= name %> </h4>
             <p> <%= description %> </p>
             <p> <%= category %> </p>
-            <p>
-                <button class="btn btn-mini btn-primary showTrack" type="button" id="<%= title %>">Begin track</button> 
+            <p> 
                 <button class="btn btn-mini btn-primary editNote" type="button" id="<%= id %>" onClick="fireEditNote(this);">
-                    Edit note
+                    Editer note
                 </button>
             </p>
         </script>

@@ -5,9 +5,9 @@ Geonotes.Views.TrackView = Backbone.View.extend({
 	template: template('trackView'),
 
 	events: {
-		'swipeLeft' : 'deleteTrack',
-		'swipeRight' : 'editTrack',
-		'click' : 'showTrack'
+		'click .icon-remove-sign' : 'deleteTrack',
+		'click .showTrack' : 'showTrack',
+		'click .icon-edit' : 'editTrack'
 	},
 
 	initialize: function() {

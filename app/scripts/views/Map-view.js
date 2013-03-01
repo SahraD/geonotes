@@ -12,13 +12,20 @@ Geonotes.Views.MapView = Backbone.View.extend({
         Geonotes.mapModel.set('longitude', 0);
 
         this.initiateGeolocation();
-        this.$el.height($(window).height() - $("#header").height() - $("#footer").height() -10);
+        console.log(window.user);
+        if(window.user == true){
+            this.$el.height($(window).height() - $("#header").height() - $("#footer").height() -40);
+        }
+        else {
+            this.$el.height($(window).height() - $("#header").height() - $("#footer").height() -10);
+        }
+        
 
     },
 
     initiateGeolocation: function() {
 
-        var watchId = navigator.geolocation.watchPosition(this.getPositionSuccess, this.getPositionError);
+        var watchId = navigator.geolocation.getCurrentPosition(this.getPositionSuccess, this.getPositionError);
     },
 
     getPositionSuccess: function(position){
@@ -50,7 +57,6 @@ Geonotes.Views.MapView = Backbone.View.extend({
         var map = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
 
         google.maps.event.addListener(map, "click", function (e) {
-            console.log("In google map event");
             var lat = e.latLng.lat();
             var lng = e.latLng.lng();
 

@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"get",
+				"getNotes"
+			],
+			[
+				"ne",
+				"newIcon"
+			],
+			[
+				"directionsD",
+				"directionsDisplay"
+			],
+			[
 				"note",
 				"notesCollection"
 			],
@@ -100,18 +112,18 @@
 	"buffers":
 	[
 		{
-			"file": "app/scripts/views/AddNote-view.js",
+			"file": "app/user.html",
 			"settings":
 			{
-				"buffer_size": 985,
+				"buffer_size": 4465,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/scripts/views/AddTrack-view.js",
+			"file": "app/scripts/views/User-view.js",
 			"settings":
 			{
-				"buffer_size": 1399,
+				"buffer_size": 1300,
 				"line_ending": "Unix"
 			}
 		},
@@ -119,39 +131,7 @@
 			"file": "app/scripts/views/Map-view.js",
 			"settings":
 			{
-				"buffer_size": 5089,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/scripts/views/application-view.js",
-			"settings":
-			{
-				"buffer_size": 1726,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/index.html",
-			"settings":
-			{
-				"buffer_size": 9557,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/scripts/views/Notes-view.js",
-			"settings":
-			{
-				"buffer_size": 395,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/scripts/views/Note-view.js",
-			"settings":
-			{
-				"buffer_size": 671,
+				"buffer_size": 5846,
 				"line_ending": "Unix"
 			}
 		}
@@ -159,7 +139,7 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 67.0,
+		"height": 392.0,
 		"selected_items":
 		[
 			[
@@ -296,18 +276,21 @@
 	},
 	"file_history":
 	[
-		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/collections/Notes-collection.js",
-		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/collections/Tracks-collection.js",
+		"/Users/Matthis/Documents/Télécom/Geonotes/app/admin.html",
 		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/views/Note-view.js",
 		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/views/Notes-view.js",
-		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/views/Map-view.js",
-		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/views/EditTrack-view.js",
-		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/views/AddTrack-view.js",
 		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/views/application-view.js",
+		"/Users/Matthis/Documents/Télécom/Geonotes/app/index.html",
+		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/views/AddNote-view.js",
+		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/views/EditNote-view.js",
+		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/views/AddTrack-view.js",
+		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/views/EditTrack-view.js",
 		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/views/Tracks-view.js",
 		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/views/Track-view.js",
+		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/views/Map-view.js",
+		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/collections/Notes-collection.js",
+		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/collections/Tracks-collection.js",
 		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/main.js",
-		"/Users/Matthis/Documents/Télécom/Geonotes/app/index.html",
 		"/Users/Matthis/Documents/Télécom/Geonotes/app/styles/main.css",
 		"/Users/Matthis/Documents/Divers/my-website/copy.html",
 		"/Applications/MAMP/htdocs/geonotes/public/js/views/note.js",
@@ -378,6 +361,21 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"addTrackModal",
+			"Track",
+			"Edit",
+			"Add",
+			"Track",
+			"createTrack",
+			"position.coords.latitude",
+			"position",
+			"Position",
+			"position",
+			"note",
+			"createNote",
+			"name",
+			"Service",
+			"map",
 			"longitude",
 			"addTrack",
 			"lick",
@@ -434,144 +432,23 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "app/scripts/views/AddNote-view.js",
+					"file": "app/user.html",
 					"settings":
 					{
-						"buffer_size": 985,
+						"buffer_size": 4465,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								473,
-								473
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "app/scripts/views/AddTrack-view.js",
-					"settings":
-					{
-						"buffer_size": 1399,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								722,
-								722
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 208.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "app/scripts/views/Map-view.js",
-					"settings":
-					{
-						"buffer_size": 5089,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2998,
-								2998
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1200.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "app/scripts/views/application-view.js",
-					"settings":
-					{
-						"buffer_size": 1726,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								529,
-								529
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "app/index.html",
-					"settings":
-					{
-						"buffer_size": 9557,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								9032,
-								9032
+								1173,
+								1173
 							]
 						],
 						"settings":
@@ -584,25 +461,25 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2392.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "app/scripts/views/Notes-view.js",
+					"buffer": 1,
+					"file": "app/scripts/views/User-view.js",
 					"settings":
 					{
-						"buffer_size": 395,
+						"buffer_size": 1300,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								343,
-								343
+								652,
+								652
 							]
 						],
 						"settings":
@@ -620,19 +497,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "app/scripts/views/Note-view.js",
+					"buffer": 2,
+					"file": "app/scripts/views/Map-view.js",
 					"settings":
 					{
-						"buffer_size": 671,
+						"buffer_size": 5846,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								323,
-								323
+								2137,
+								2137
 							]
 						],
 						"settings":
@@ -641,7 +518,8 @@
 							"remote_loading": false,
 							"synced": false,
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
