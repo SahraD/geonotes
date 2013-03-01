@@ -12,7 +12,6 @@ Geonotes.Views.MapView = Backbone.View.extend({
         Geonotes.mapModel.set('longitude', 0);
 
         this.initiateGeolocation();
-        console.log(window.user);
         if(window.user == true){
             this.$el.height($(window).height() - $("#header").height() - $("#footer").height() -40);
         }

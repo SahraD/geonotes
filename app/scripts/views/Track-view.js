@@ -13,6 +13,14 @@ Geonotes.Views.TrackView = Backbone.View.extend({
 	initialize: function() {
 		this.model.on('destroy', this.unrender, this);
 		this.model.on('change', this.render, this);
+
+		var self = this;
+
+		$.when(this.model.evaluateDistance()).then(function(dist) {
+			self.model.set('distance', dist);
+		});
+		
+
 	},
 
 	render: function() {
