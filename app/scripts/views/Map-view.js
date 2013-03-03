@@ -1,7 +1,13 @@
+/**
+ * Vue de la carte
+ */
 Geonotes.Views.MapView = Backbone.View.extend({
 
     el: $("#map_canvas"),
 
+    /**
+     * Initialisation
+     */
     initialize: function(){
 
         vent.on('track:show', this.showTrack, this);
@@ -12,21 +18,27 @@ Geonotes.Views.MapView = Backbone.View.extend({
         Geonotes.mapModel.set('longitude', 0);
 
         this.initiateGeolocation();
-        if(window.user == true){
+        if(window.user == true) {
             this.$el.height($(window).height() - $("#header").height() - $("#footer").height() -40);
         }
         else {
             this.$el.height($(window).height() - $("#header").height() - $("#footer").height() -10);
         }
-        
 
     },
 
+    /**
+     * Fonction pour récupérer la position actuelle
+     */
     initiateGeolocation: function() {
 
         var watchId = navigator.geolocation.getCurrentPosition(this.getPositionSuccess, this.getPositionError);
     },
 
+    /**
+     * Fonction appelée en cas de succès de récupérartion de la position
+     * @param  {Object} position : position actuelle
+     */
     getPositionSuccess: function(position){
 
         Geonotes.mapModel.set('latitude', position.coords.latitude);
@@ -34,12 +46,19 @@ Geonotes.Views.MapView = Backbone.View.extend({
         window.map.initMap();
     },
 
+    /**
+     * Fonction appelée en cas de probème lors de la récupération de la position
+     */
     getPositionError: function() {
 		alert("Impossible to get your current position");
 		
 		window.map.initMap();
     },
 
+    /**
+     * Initialisation de la vue de la carte une fois l'initialisation de la position effectuée. 
+     * Utilisation de l'APIv3 de Google Maps
+     */
     initMap: function() {
 
         var latlng = new google.maps.LatLng(Geonotes.mapModel.get('latitude'), Geonotes.mapModel.get('longitude'));
@@ -85,10 +104,18 @@ Geonotes.Views.MapView = Backbone.View.extend({
 
     },
 
+    /**
+     * Fonction appelée lorsque l'utilisateur clique sur la carte
+     * @param {Array} position : position cliquée sur la carte
+     */
     addNote: function(position) {
     	vent.trigger('map:addNote', position);
     },
 
+    /**
+     * Fonction appelée lorsque l'utilsateur clique sur un parcours dans la liste
+     * @param  {Geonotes.Models.TrackModel} track : parcours à afficher
+     */
     showTrack: function(track) {
 
         // On récupère des variables initialisées lors de initMap
@@ -97,10 +124,6 @@ Geonotes.Views.MapView = Backbone.View.extend({
         var directionsDisplay = Geonotes.mapModel.get("directionsDisplay");
 
         var positions = new Array();
-        //Récupérer les notes selon le parcours
-        
-        // var notes = new Geonotes.Collections.NotesCollection;
-        // notes.fetch({url : 'http://192.168.0.13:8080/war/rest/track/' + track.get('trackId') + '/notes'}).then(function() {
 
         Geonotes.notes.fetch();
 
@@ -144,6 +167,12 @@ Geonotes.Views.MapView = Backbone.View.extend({
         });
     },
 
+    /**
+     * Fonction pour afficher un marker sur la carte pour une note
+     * @param  {Geonotes.Models.NoteModel}  note : note que l'on doit afficher sur la carte
+     * @param  {google.maps.Map}            map  : carte sur laquelle on doit afficher la note
+     * @param  {String}                     icon : style que du marker que l'on doit afficher (optionel)
+     */
     showMarker: function(note, map, icon) {
 
         var noteView = new Geonotes.Views.NoteView({model: note});
@@ -153,7 +182,6 @@ Geonotes.Views.MapView = Backbone.View.extend({
             maxWidth: 500
         });
 
-        //creer marker sur la map
         var coords = new google.maps.LatLng(note.get('latitude'), note.get('longitude'));
         if(icon){
             var marker = new google.maps.Marker({
@@ -170,18 +198,19 @@ Geonotes.Views.MapView = Backbone.View.extend({
                 title: note.get("titre")
             });
         }
-        
 
-        //ajouter event listener
         google.maps.event.addListener(marker, 'click', function() {
             infowindow.open(map, marker);
         });
     },
 
+    /**
+     * Fonction pour afficher toutes les notes sur la carte
+     * @param  {google.maps.Map} map : carte sur laquelle afficher les notes
+     */
     showMarkers: function(map) {
         var self = this;
 
-        //var notes = new Geonotes.Collections.NotesCollection;
         Geonotes.notes.fetch().then(function() {
             Geonotes.notes.each( function(note) {
                 self.showMarker(note, map);               

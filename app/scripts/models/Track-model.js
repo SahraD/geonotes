@@ -1,5 +1,13 @@
+/**
+ * Définition du modèle de parcours
+ */
 Geonotes.Models.TrackModel = Backbone.Model.extend({
 
+    /**
+     * Fonction de calcul de distance du parcours. 
+     * Cette fonction est une fonction utilisant les API de Google pour le calcul de distance
+     * @return distance : distance totale du parcours
+     */
 	evaluateDistance: function(){
         var positions = new Array();
 

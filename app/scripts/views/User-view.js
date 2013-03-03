@@ -1,5 +1,12 @@
+/**
+ * Vue globale pour l'utilisateur final. 
+ */
 Geonotes.Views.UserView = Backbone.View.extend({
 
+	/**
+	 * Fonction d'initialisation 
+	 * Elle gère la réception de événements et leur distribution
+	 */
 	initialize: function() {
 
 		Geonotes.tracks.fetch();

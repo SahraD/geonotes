@@ -1,3 +1,6 @@
+/**
+ * Vue pour gérer l'affichage et les événements liés à la création d'un parcours
+ */
 Geonotes.Views.AddTrackView = Backbone.View.extend({
 
 	el: '#addTrackModal',
@@ -7,6 +10,10 @@ Geonotes.Views.AddTrackView = Backbone.View.extend({
 		'touch #submitAddTrack': 'createTrack'
 	},
 
+	/**
+	 * Fonction d'initialisation de la vue pour l'ajout d'un parcours. 
+	 * Affiche la fenêtre modale contenant le formulaire
+	 */
 	initialize: function() {
 
 		$('#addTrackModal').modal();
@@ -21,6 +28,12 @@ Geonotes.Views.AddTrackView = Backbone.View.extend({
 		this.clearForm();
 	},
 
+	/**
+	 * Fonction appelée lors de la soumission du formulaire
+	 * Récupère toutes les valeurs entrées pour créer un parcours
+	 * Ajout de ce parcours à la collection
+	 * @param  event e 
+	 */
 	createTrack: function(e) {
 		e.preventDefault();
 
@@ -45,12 +58,19 @@ Geonotes.Views.AddTrackView = Backbone.View.extend({
 		this.undelegateEvents();
 	},
 
+	/**
+	 * Fonction de nettoyage du formulaire d'ajout de parcours
+	 */
 	clearForm: function() {
 		this.nameTrack.val('');
 		this.categoryTrack.val('');
 		this.descriptionTrack.val('');
 	},
 
+	/**
+	 * Fonction qui permet d'afficher toutes les notes disponibles 
+	 * La vue générée est une liste de checkbox suivies par les noms des notes
+	 */
 	showNotes: function() {
 		Geonotes.notes.fetch();
 		var allNotesView = new Geonotes.Views.NotesView({collection : Geonotes.notes }).render();
@@ -58,6 +78,10 @@ Geonotes.Views.AddTrackView = Backbone.View.extend({
 
 	},
 
+	/**
+	 * Fonction qui récupère toutes les notes ayant été cochées
+	 * @return Geonotes.Collections.NotesCollection : une collection de notes
+	 */
 	getNotes: function() {
 		var notes = new Geonotes.Collections.NotesCollection;
 

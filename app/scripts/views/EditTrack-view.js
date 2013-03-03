@@ -1,3 +1,6 @@
+/**
+ * Vue de l'édition du parcours
+ */
 Geonotes.Views.EditTrackView = Backbone.View.extend({
 
 	el: '#editTrackModal',
@@ -7,6 +10,10 @@ Geonotes.Views.EditTrackView = Backbone.View.extend({
 		'touch #submitEditTrack': 'editTrack'
 	},
 
+	/**
+	 * Fonction d'initialisation de la vue
+	 * Affiche la fenêtre modale, remplit les champs et coche les notes liées au parcours
+	 */
 	initialize: function() {
 		$('#editTrackModal').modal('show');
 
@@ -22,6 +29,11 @@ Geonotes.Views.EditTrackView = Backbone.View.extend({
 
 	},
 
+	/**
+	 * Fonction appelée lors de la soumission du formulaire
+	 * Récupère toutes les données rentrées et sauvegarde le parcours ainsi modifié
+	 * @param  {event} e 
+	 */
 	editTrack: function(e) {
 		e.preventDefault();
 
@@ -44,6 +56,9 @@ Geonotes.Views.EditTrackView = Backbone.View.extend({
 
 	},
 
+	/**
+	 * Affichage de toutes les notes : checkbox et nom de la note 
+	 */
 	showNotes: function() {
 
 		Geonotes.notes.fetch();
@@ -52,6 +67,9 @@ Geonotes.Views.EditTrackView = Backbone.View.extend({
 
 	},
 
+	/**
+	 * Coche toutes les notes qui étaient déjà présentent dans le parcours que l'on modifie
+	 */
 	checkNotes: function() {
 
 		var notesCollection = new Geonotes.Collections.NotesCollection;
@@ -72,6 +90,10 @@ Geonotes.Views.EditTrackView = Backbone.View.extend({
 		);
 	},
 
+	/**
+	 * Récupère les notes cochées dans le formulaire
+	 * @return {Geonotes.Collections.NotesCollection} collection des notes cochées.
+	 */
 	getNotes: function() {
 		var notes = new Geonotes.Collections.NotesCollection;
 

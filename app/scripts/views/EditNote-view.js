@@ -1,3 +1,7 @@
+/**
+ * Vue pour l'édition d'une note
+ * @type {[type]}
+ */
 Geonotes.Views.EditNoteView = Backbone.View.extend({
 
   	el: '#editNoteModal',
@@ -7,10 +11,11 @@ Geonotes.Views.EditNoteView = Backbone.View.extend({
 		'touch #submitEditNote': 'editNote'
 	},
 
+	/**
+	 * Initialise la vue en affichant la fenêtre modale et en remplissant les champs correspondant à la note
+	 */
 	initialize: function() {
 		$('#editNoteModal').modal();
-
-		console.log(this.model);
 
 		var position = [this.model.get('latitude'), this.model.get('longitude')];
 
@@ -23,10 +28,12 @@ Geonotes.Views.EditNoteView = Backbone.View.extend({
 		this.name.val(this.model.get('name'));
 		this.description.val(this.model.get('description'));
 		this.category.val(this.model.get('category'));
-
-		console.log(position[0]);
 	},
 
+	/**
+	 * Fonction appelée lors de la soumission du formulaire
+	 * @param  {event} e 
+	 */
 	editNote: function(e) {
 		e.preventDefault();
 
@@ -47,6 +54,9 @@ Geonotes.Views.EditNoteView = Backbone.View.extend({
 		this.undelegateEvents();
 	},
 
+	/**
+	 * Fonction de nettoyage du formulaire
+	 */
 	clearForm: function() {
 		this.name.val('');
 		this.category.val('');
