@@ -6,3 +6,8 @@ body {
 #map_canvas {
 	width: 100%;
 }
+
+.align-right {
+	float: right;
+	margin-left: 10px;
+}

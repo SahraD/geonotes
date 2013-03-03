@@ -1,49 +1,58 @@
+/**
+ * Vue pour gérer l'affichage et les événements liés à la création d'une note
+ */
 Geonotes.Views.AddNoteView = Backbone.View.extend({
 
-	el: '.noteModal',
+	el: '#addNoteModal',
 
 	events: {
-		'click #submit': 'createNote',
-		'touch #submit': 'createNote'
+		'click #submitAddNote': 'createNote',
+		'touch #submitAddNote': 'createNote'
 	},
 
+	/**
+	 * Initialisation de la vue
+	 * Permet d'afficher la fenêtre modale correspondant à la création d'une note
+	 * @param  Array position : position de la note créée
+	 */
 	initialize: function(position) {
-		$('.noteModal').modal({show: true});
-
-		this.name = $('#name');
-		this.category = $('#category');
-		this.description = $('#description');
+		$('#addNoteModal').modal({show: true});
 		this.latitude = position[0];
 		this.longitude = position[1];
-
-		console.log(position[0]);
 	},
 
+	/**
+	 * Fonction appelée lors de la soumission du formulaire
+	 * Récupère les données rentrées dans le formulaire et ajoute la note à la collection
+	 * @param event e
+	 */
 	createNote: function(e) {
 		e.preventDefault();
 
-		var note = new Geonotes.Models.NoteModel({name: this.name.val(), description: this.description.val(), category: this.category.val(), latitude: this.latitude, longitude: this.longitude});
-		console.log(note);
-
 		Geonotes.notes.create({
-			name: this.name.val(),
-			category: this.category.val(),
-			description: this.description.val(),
-			latitude: this.latitude,
+			name: $('#nameAddNote').val(), 
+			description: $('#categoryAddNote').val(), 
+			category: $('#descriptionAddNote').val(), 
+			latitude: this.latitude, 
 			longitude: this.longitude
 		});
 
 		this.clearForm();
 
-		$('.noteModal').modal('hide');
+		$('#addNoteModal').modal('hide');
 
 		vent.trigger('addNote:noteAdded');
+
+		this.undelegateEvents();
 	},
 
+	/**
+	 * Nettoyage du formulaire une fois la note créée
+	 */
 	clearForm: function() {
-		this.name.val('');
-		this.category.val('');
-		this.description.val('');
+		$('#nameAddNote').val('');
+		$('#categoryAddNote').val('');
+		$('#descriptionAddNote').val('');
 	}
 
 });
