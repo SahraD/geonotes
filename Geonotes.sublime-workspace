@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"clear",
+				"clearForm"
+			],
+			[
 				"margin",
 				"margin-right"
 			],
@@ -123,53 +127,25 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "app/scripts/views/Track-view.js",
-			"settings":
-			{
-				"buffer_size": 839,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/scripts/views/application-view.js",
-			"settings":
-			{
-				"buffer_size": 1277,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/scripts/views/Tracks-view.js",
-			"settings":
-			{
-				"buffer_size": 419,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/scripts/models/Track-model.js",
-			"settings":
-			{
-				"buffer_size": 1197,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/scripts/views/Map-view.js",
-			"settings":
-			{
-				"buffer_size": 5985,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 392.0,
+		"height": 327.0,
 		"selected_items":
 		[
+			[
+				"doc",
+				"DocBlockr: Decorate line comment"
+			],
+			[
+				"comment",
+				"DocBlockr: Reparse comment block"
+			],
+			[
+				"comme",
+				"DocBlockr: Decorate line comment"
+			],
 			[
 				"package disa",
 				"Package Control: Disable Package"
@@ -304,24 +280,27 @@
 	},
 	"file_history":
 	[
-		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/main.js",
-		"/Users/Matthis/Documents/Télécom/Geonotes/app/styles/main.css",
-		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/views/application-view.js",
-		"/Users/Matthis/Documents/Télécom/Geonotes/app/index.html",
-		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/views/AddTrack-view.js",
-		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/views/Map-view.js",
-		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/views/User-view.js",
 		"/Users/Matthis/Documents/Télécom/Geonotes/app/user.html",
-		"/Users/Matthis/Documents/Télécom/Geonotes/app/admin.html",
-		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/views/Note-view.js",
-		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/views/Notes-view.js",
-		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/views/AddNote-view.js",
-		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/views/EditNote-view.js",
-		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/views/EditTrack-view.js",
+		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/views/User-view.js",
 		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/views/Tracks-view.js",
 		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/views/Track-view.js",
+		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/views/Notes-view.js",
+		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/views/Note-view.js",
+		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/views/Map-view.js",
+		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/views/EditTrack-view.js",
+		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/views/EditNote-view.js",
+		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/views/application-view.js",
+		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/views/AddNote-view.js",
+		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/views/AddTrack-view.js",
+		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/models/Track-model.js",
+		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/models/Note-model.js",
+		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/models/Map-model.js",
 		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/collections/Notes-collection.js",
+		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/main.js",
+		"/Users/Matthis/Documents/Télécom/Geonotes/app/index.html",
 		"/Users/Matthis/Documents/Télécom/Geonotes/app/scripts/collections/Tracks-collection.js",
+		"/Users/Matthis/Documents/Télécom/Geonotes/app/styles/main.css",
+		"/Users/Matthis/Documents/Télécom/Geonotes/app/admin.html",
 		"/Users/Matthis/Documents/Divers/my-website/copy.html",
 		"/Applications/MAMP/htdocs/geonotes/public/js/views/note.js",
 		"/Applications/MAMP/htdocs/geonotes/public/js/views.js",
@@ -462,159 +441,8 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "app/scripts/views/Track-view.js",
-					"settings":
-					{
-						"buffer_size": 839,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								484,
-								484
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 24.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "app/scripts/views/application-view.js",
-					"settings":
-					{
-						"buffer_size": 1277,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "app/scripts/views/Tracks-view.js",
-					"settings":
-					{
-						"buffer_size": 419,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								410,
-								410
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "app/scripts/models/Track-model.js",
-					"settings":
-					{
-						"buffer_size": 1197,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1173,
-								1173
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "app/scripts/views/Map-view.js",
-					"settings":
-					{
-						"buffer_size": 5985,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								432,
-								432
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],
