@@ -4,15 +4,15 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
-        <meta charset="utf-8"/>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>Geonotes - Admin</title>
-        <meta name="description" content="This is the geonotes application by Matthis Duclos and Alexandre Laurent"/>
+        <meta name="description" content="This is the geonotes application by Matthis Duclos and Alexandre Laurent">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="styles/bootstrap.css" />
-        <link rel="stylesheet" href="styles/bootstrap-responsive.css" />
-        <link rel="stylesheet" href="styles/font-awesome.min.css" />
-        <link rel="stylesheet" href="styles/main.css"/>
+        <link rel="stylesheet" href="styles/bootstrap.css">
+        <link rel="stylesheet" href="styles/bootstrap-responsive.css">
+        <link rel="stylesheet" href="styles/font-awesome.min.css">
+        <link rel="stylesheet" href="styles/main.css">
 
     </head>
     <body>
@@ -141,7 +141,7 @@
             </div>
         </div>
 
-        <div id="addTrackModal"class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div id="addTrackModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h3>Ajout d'un parcours</h3>
@@ -183,7 +183,7 @@
         </div>
 
 
-        <div id="editTrackModal"class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div id="editTrackModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h3>Edition d'un parcours</h3>
@@ -226,59 +226,7 @@
 
 
 
-        <!-- build:js scripts/scripts.js -->
-        <!-- Vendors -->
-        <script src="scripts/vendor/jquery.min.js"></script>
-        <script src="scripts/vendor/lodash.min.js"></script>
-        <script src="scripts/vendor/backbone-min.js"></script>
-        <script src="scripts/vendor/backbone.localStorage-min.js"></script>
-        <script src="scripts/vendor/bootstrap.min.js"></script>
-        <script src="scripts/vendor/quo.js"></script>
-        <script type="text/javascript"
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-rrNMRI6NGbR_kEkFhpVc5EtBFgV6jwA&sensor=true">
-        </script>
-
-        <!-- Main -->
-        <script src="scripts/main.js"></script>
-
-        <!-- Views -->
-        <script src="scripts/views/application-view.js"></script>
-        <script src="scripts/views/AddNote-view.js"></script>
-        <script src="scripts/views/AddTrack-view.js"></script>
-        <script src="scripts/views/EditNote-view.js"></script>
-        <script src="scripts/views/EditTrack-view.js"></script>
-        <script src="scripts/views/Map-view.js"></script>
-        <script src="scripts/views/Note-view.js"></script>
-        <script src="scripts/views/Notes-view.js"></script>
-        <script src="scripts/views/Track-view.js"></script>
-        <script src="scripts/views/Tracks-view.js"></script>
-
-        <!-- Models -->
-        <script src="scripts/models/Note-model.js"></script>
-        <script src="scripts/models/Track-model.js"></script>
-        <script src="scripts/models/Map-model.js"></script>
-
-        <!-- Collections -->
-        <script src="scripts/collections/Notes-collection.js"></script>
-        <script src="scripts/collections/Tracks-collection.js"></script>
-
-        <!-- Initialisations -->
-        <script>
-            $('#addTrackButton').click(function(){
-                vent.trigger('track:add');
-            });
-
-            var fireEditNote = function(el){
-                vent.trigger('note:edit', el.id);
-            };
-
-            Geonotes.tracks = new Geonotes.Collections.TracksCollection;
-            Geonotes.notes = new Geonotes.Collections.NotesCollection;
-            new Geonotes.Views.ApplicationView({ collection: Geonotes.tracks });
-
-        </script>
-
-        <!-- endbuild -->
+        <script src="scripts/scripts.js"></script>
 
     </body>
 </html>
